@@ -84,3 +84,26 @@ form.addEventListener('submit', (e) => {
         output.innerText = 'Error creando la reserva';
     });
 });
+function isValidTime(startTime, endTime) {
+    let validTimes = [
+        { start: '09:00', end: '12:00' },
+        { start: '14:00', end: '21:00' }
+    ];
+
+    return validTimes.some(time => {
+        return (startTime >= time.start && endTime <= time.end);
+    });
+}
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let startTime = document.getElementById('start_time').value;
+    let endTime = document.getElementById('end_time').value;
+
+    if (isValidTime(startTime, endTime)) {
+        // Proceder con la creación del evento
+    } else {
+        output.innerText = 'El horario no es válido';
+    }
+});
+
